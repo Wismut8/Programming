@@ -73,9 +73,16 @@ namespace Programming.View
             //Ввод слова
             string inputText = ParseTextBox.Text;
 
+            //защита от ввода целых чисел
+            int number;
+            if (int.TryParse(inputText, out number))
+            {
+                ParseCommentLabel.Text = "Пожалуйста, введите название дня недели, а не число";
+                return;
+            }
+
             //объявление перечисления, с которым будем работать
             Weekday weekday;
-
 
             //Парсинг, вывод комментария
             if (Enum.TryParse(inputText, out weekday))
@@ -87,7 +94,6 @@ namespace Programming.View
                 ParseCommentLabel.Text = "Нет такого дня недели";
             }
         }
-
 
         private void SeasonButton_Click(object sender, EventArgs e)
         {
@@ -107,6 +113,11 @@ namespace Programming.View
                     Enums.BackColor = ColorTranslator.FromHtml("#e29c45");
                     break;
             }
+        }
+
+        private void IntTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

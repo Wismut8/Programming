@@ -192,10 +192,12 @@
             // 
             // IntTextBox
             // 
+            IntTextBox.Enabled = false;
             IntTextBox.Location = new Point(411, 61);
             IntTextBox.Name = "IntTextBox";
             IntTextBox.Size = new Size(125, 27);
             IntTextBox.TabIndex = 4;
+            IntTextBox.TextChanged += IntTextBox_TextChanged;
             // 
             // ChooseValLabel
             // 
