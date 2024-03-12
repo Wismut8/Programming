@@ -11,17 +11,17 @@ public class Flight
     ///<summary>
     ///¬озвращает и задает пункт вылета
     ///</summary>
-    private string DeparturePoint { get; set; }
+    public string DeparturePoint { get; set; }
 
     ///<summary>
     ///¬озвращает и задает пункт назначени€
     ///</summary>
-    private string Destination { get; set; }
+    public string Destination { get; set; }
 
     ///<summary>
     ///¬озвращает и задает врем€ полета в минутах
     ///</summary>
-    private int FlightTimeInMinutes
+    public int FlightTimeInMinutes
     {
         get
         {
@@ -29,11 +29,10 @@ public class Flight
         }
         set
         {
-            if (value < 0)
+            if (Validator.AssertOnPositiveValue(value))
             {
-                throw new ArgumentException();
+                _flightTimeInMinutes = value;
             }
-            _flightTimeInMinutes = value;
         }
     }
 
@@ -49,4 +48,6 @@ public class Flight
         Destination = destination;
         FlightTimeInMinutes = flightTimeInMinutes;
     }
+
+    public Flight() { }
 }

@@ -5,5 +5,5 @@
     Yellow,
     Green,
     Blue,
-    Violet
+    Purple
 }

@@ -11,7 +11,7 @@ public class Time
     ///<summary>
     ///Возвращает и задает значение часа
     ///</summary>
-    private int Hour
+    public int Hour
     {
         get
         {
@@ -30,7 +30,7 @@ public class Time
     ///<summary>
     ///Возвращает и задает число минут
     ///</summary>
-    private int Minute
+    public int Minute
     {
         get
         {
@@ -49,7 +49,7 @@ public class Time
     ///<summary>
     ///Возвращает и задает число секунд
     ///</summary>
-    private int Second
+    public int Second
     {
         get
         {
@@ -77,4 +77,6 @@ public class Time
         Minute = minute;
         Second = second;
     }
+
+    public Time() { }
 }

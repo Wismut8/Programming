@@ -11,17 +11,17 @@ public class Subject
     ///<summary>
     ///Возвращает и задает наименование предмета
     ///</summary>
-    private string Name { get; set; }
+    public string Name { get; set; }
 
     ///<summary>
     ///Возвращает и задает фамилию преподавателя
     ///</summary>
-    private string Professor { get; set; }
+    public string Professor { get; set; }
 
     ///<summary>
     ///Возвращает и задает оценку по предмету
     ///</summary>
-    private int Assessment
+    public int Assessment
     {
         get
         {
@@ -49,4 +49,6 @@ public class Subject
         Professor = professor;
         Assessment = assessment;
     }
+
+    public Subject() { }
 }

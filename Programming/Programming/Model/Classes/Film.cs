@@ -13,12 +13,12 @@ public class Film
     ///<summary>
     ///Возвращает и задает название фильма
     ///</summary>
-    private string Name { get; set; }
+    public string Name { get; set; }
 
     ///<summary>
     ///Возвращает и задает длительность фильма в минутах
     ///</summary>
-    private int DurationInMinutes
+    public int DurationInMinutes
     {
         get
         {
@@ -26,18 +26,17 @@ public class Film
         }
         set
         {
-            if (value < 0)
+            if (Validator.AssertOnPositiveValue(value))
             {
-                throw new ArgumentException();
+                _durationInMinutes = value;
             }
-            _durationInMinutes = value;
         }
     }
 
     ///<summary>
     ///Возвращает и задает год выпуска фильма
     ///</summary>
-    private int YearOfIssue
+    public int YearOfIssue 
     {
         get
         {
@@ -45,23 +44,25 @@ public class Film
         }
         set
         {
-            if (value < 1900 || value > 2024)
+            if (value > 1900)
             {
-                throw new ArgumentException();
+                if (value < DateTime.Now.Year + 1)
+                {
+                    _yearOfIssue = value;
+                }
             }
-            _yearOfIssue = value;
         }
     }
 
     ///<summary>
     ///Возвращает и задает жанр фильма
     ///</summary>
-    private string Genre { get; set; }
+    public string Genre { get; set; }
 
     ///<summary>
     ///Возвращает и задает рейтинг фильма
     ///</summary>
-    private double Rating
+    public double Rating
     {
         get
         {
@@ -69,7 +70,7 @@ public class Film
         }
         set
         {
-            if (value < 0.0 ||value > 10.0)
+            if (value < 0.0 || value > 10.0)
                 {
                 throw new ArgumentException();
             }
@@ -93,4 +94,6 @@ public class Film
         Genre = genre;
         Rating = rating;
     }
+
+    public Film() { }
 }

@@ -5,24 +5,67 @@ using System;
 public class Contact
 {
     private string _name;
-    private string _secondName;
+    private string _surname;
     private int _telephone;
     private string _notes;
 
     ///<summary>
+    ///Проверяет, содержит ли строка только латиницу
+    ///</summary>
+    private bool AssertStringContainsOnlyLetters(string value)
+    {
+        foreach (char c in value)
+        {
+            if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z'))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    ///<summary>
     ///Возвращает и задает имя контакта
     ///</summary>
-    private string Name { get; set; }
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+        set
+        {
+            if (!AssertStringContainsOnlyLetters(_name))
+            {
+                throw new ArgumentException("Name must contain only latin alfabet");
+            }
+            _name = value;
+        }
+    }
 
     ///<summary>
     ///Возвращает и задает фамилию контакта
     ///</summary>
-    private string SecondName { get; set; }
+    public string SurName
+    {
+        get
+        {
+            return _surname;
+        }
+        set
+        {
+            if (!AssertStringContainsOnlyLetters(_surname))
+            {
+                throw new ArgumentException("Surname must contain only latin alfabet");
+            }
+            _surname = value;
+        }
+    }
 
     ///<summary>
     ///Возвращает и задает телефон
     ///</summary>
-    private int Telephone
+    public int Telephone
     {
         get
         {
@@ -42,7 +85,7 @@ public class Contact
     ///<summary>
     ///Возвращает и задает заметки к контакту
     ///</summary>
-    private string Notes { get; set; }
+    public string Notes { get; set; }
 
     ///<summary>
     ///Создает экземпляр телефонного контакта
@@ -54,8 +97,12 @@ public class Contact
     public Contact(string name, string secondName, int telephone, string notes)
     {
         Name = name;
-        SecondName = secondName;
+        SurName = secondName;
         Telephone = telephone;
         Notes = notes;
     }
+
+    public Contact() { }
+
+
 }

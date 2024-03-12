@@ -12,17 +12,17 @@ public class Song
     ///<summary>
     ///¬озвращает и задает название песни
     ///</summary>
-    private string Name { get; set; }
+    public string Name { get; set; }
 
     ///<summary>
     ///¬озвращает и задает исполнител€
     ///</summary>
-    private string Singer { get; set; }
+    public string Singer { get; set; }
 
     ///<summary>
     ///¬озвращает и задает год выпуска
     ///</summary>
-    private int YearOfIssue
+    public int YearOfIssue
     {
         get
         {
@@ -41,7 +41,7 @@ public class Song
     ///<summary>
     ///¬озвращает и задает длительность песни в секундах
     ///</summary>
-    private int DurationInSeconds
+    public int DurationInSeconds
     {
         get
         {
@@ -49,11 +49,10 @@ public class Song
         }
         set
         {
-            if (value < 0)
+            if (Validator.AssertOnPositiveValue(value))
             {
-                throw new ArgumentException();
+                _durationInSeconds = value;
             }
-            _durationInSeconds = value;
         }
     }
 
@@ -71,4 +70,6 @@ public class Song
         YearOfIssue = yearOfIssue;
         DurationInSeconds = durationInSeconds;
     }
+
+    public Song() { }
 }

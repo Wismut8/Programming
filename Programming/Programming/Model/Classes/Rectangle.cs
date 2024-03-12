@@ -4,14 +4,32 @@ using System;
 ///</summary>
 public class Rectangle
 {
-	private double _height;
+    private static int _allRectanglesCount = 0;
+    private readonly int _id;
+    private Point2D _center;
+    private double _height;
 	private double _width;
 	private string _color;
+
+    public int Id
+    {
+        get { return _id; }
+    }
+
+    public static int AllRectanglesCount()
+    {
+        return _allRectanglesCount;
+    }
+
+    ///<summary>
+    ///Возвращает и задает координаты центра прямоугольника
+    ///</summary>
+    public Point2D RectangleCenter { get; set; }
 
     ///<summary>
     ///Возвращает и задает длину прямоугольника
     ///</summary>
-    private double Height
+    public double Height
     {
         get
         {
@@ -19,18 +37,17 @@ public class Rectangle
         }
         set
         {
-            if (value < 0.0)
+            if (Validator.AssertOnPositiveValue(value))
             {
-                throw new ArgumentException();
+                _height = value;
             }
-            _height = value;
         }
     }
 
     ///<summary>
     ///Возвращает и задает ширину прямоугольника
     ///</summary>
-    private double Width
+    public double Width
     {
         get
         {
@@ -38,29 +55,38 @@ public class Rectangle
         }
         set
         {
-            if (value < 0.0)
+            if (Validator.AssertOnPositiveValue(value))
             {
-                throw new ArgumentException();
+               _width = value;
             }
-            _width = value;
         }
     }
 
     ///<summary>
     ///Возвращает и задает цвет прямоугольника
     ///</summary>
-    private string Color { get; set; }
+    public string Color { get; set; }
 
-	///<summary>
-	///Создает экземпляр прямоугольника
-	///</summary>
-	///<param name = "name">Длина.</param>
-	///<param name = "name">Ширина.</param>
-	///<param name = "name">Цвет.</param>
-	public Rectangle(double height, double width, string color)
+    ///<summary>
+    ///Возвращает и задает координаты центра прямоугольника
+    ///</summary>
+    public Point2D Center { get; private set; }
+
+    ///<summary>
+    ///Создает экземпляр прямоугольника
+    ///</summary>
+    ///<param name = "name">Длина.</param>
+    ///<param name = "name">Ширина.</param>
+    ///<param name = "name">Цвет.</param>
+    public Rectangle(double height, double width, string color, Point2D center)
 	{
 		Height = height;
 		Width = width;
 		Color = color;
-	}
+        Center = center;
+        _allRectanglesCount++;
+        _id = _allRectanglesCount;
+    }
+
+    public Rectangle() { }
 }
