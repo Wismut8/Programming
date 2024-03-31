@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             EnumsTabControl = new TabControl();
             Enums = new TabPage();
             SeasonGroupBox = new GroupBox();
@@ -61,21 +62,36 @@
             NameLabel = new Label();
             FilmsListBox = new ListBox();
             RectanglesGroupBox = new GroupBox();
+            IdTextBox = new TextBox();
+            label3 = new Label();
             yTextBox = new TextBox();
             label2 = new Label();
             xTextBox = new TextBox();
             label1 = new Label();
             CoordinatesLabel = new Label();
             FindButton = new Button();
-            ColorTextBox = new TextBox();
-            ColorLabel = new Label();
             WidthTextBox = new TextBox();
             WidthLabel = new Label();
             LenghtTextBox = new TextBox();
             LengthLabel = new Label();
             RectanglesListBox = new ListBox();
-            label3 = new Label();
-            IdTextBox = new TextBox();
+            Rectangles = new TabPage();
+            RectanglesPanel = new Panel();
+            HeightRecTextBox = new TextBox();
+            label11 = new Label();
+            WidthRecTextBox = new TextBox();
+            label10 = new Label();
+            YRecTextBox = new TextBox();
+            label9 = new Label();
+            XRecTextBox = new TextBox();
+            label8 = new Label();
+            IDRecTextBox = new TextBox();
+            label7 = new Label();
+            label6 = new Label();
+            DeleteRecButton = new Button();
+            AddRecButton = new Button();
+            RecListBox = new ListBox();
+            label4 = new Label();
             EnumsTabControl.SuspendLayout();
             Enums.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
@@ -84,12 +100,14 @@
             Classes.SuspendLayout();
             FilmGroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
+            Rectangles.SuspendLayout();
             SuspendLayout();
             // 
             // EnumsTabControl
             // 
             EnumsTabControl.Controls.Add(Enums);
             EnumsTabControl.Controls.Add(Classes);
+            EnumsTabControl.Controls.Add(Rectangles);
             EnumsTabControl.Dock = DockStyle.Fill;
             EnumsTabControl.Location = new Point(0, 0);
             EnumsTabControl.Name = "EnumsTabControl";
@@ -418,8 +436,6 @@
             RectanglesGroupBox.Controls.Add(label1);
             RectanglesGroupBox.Controls.Add(CoordinatesLabel);
             RectanglesGroupBox.Controls.Add(FindButton);
-            RectanglesGroupBox.Controls.Add(ColorTextBox);
-            RectanglesGroupBox.Controls.Add(ColorLabel);
             RectanglesGroupBox.Controls.Add(WidthTextBox);
             RectanglesGroupBox.Controls.Add(WidthLabel);
             RectanglesGroupBox.Controls.Add(LenghtTextBox);
@@ -432,9 +448,25 @@
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
             // 
+            // IdTextBox
+            // 
+            IdTextBox.Enabled = false;
+            IdTextBox.Location = new Point(228, 143);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.Size = new Size(27, 27);
+            IdTextBox.TabIndex = 2;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(195, 146);
+            label3.Name = "label3";
+            label3.Size = new Size(27, 20);
+            label3.TabIndex = 2;
+            label3.Text = "ID:";
+            // 
             // yTextBox
             // 
-            yTextBox.Enabled = false;
             yTextBox.Location = new Point(276, 208);
             yTextBox.Name = "yTextBox";
             yTextBox.Size = new Size(27, 27);
@@ -451,7 +483,6 @@
             // 
             // xTextBox
             // 
-            xTextBox.Enabled = false;
             xTextBox.Location = new Point(216, 208);
             xTextBox.Name = "xTextBox";
             xTextBox.Size = new Size(27, 27);
@@ -484,23 +515,6 @@
             FindButton.Text = "Find";
             FindButton.UseVisualStyleBackColor = true;
             FindButton.Click += FindButton_Click;
-            // 
-            // ColorTextBox
-            // 
-            ColorTextBox.Location = new Point(195, 155);
-            ColorTextBox.Name = "ColorTextBox";
-            ColorTextBox.Size = new Size(131, 27);
-            ColorTextBox.TabIndex = 1;
-            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
-            // 
-            // ColorLabel
-            // 
-            ColorLabel.AutoSize = true;
-            ColorLabel.Location = new Point(192, 132);
-            ColorLabel.Name = "ColorLabel";
-            ColorLabel.Size = new Size(48, 20);
-            ColorLabel.TabIndex = 1;
-            ColorLabel.Text = "Color:";
             // 
             // WidthTextBox
             // 
@@ -540,29 +554,183 @@
             // 
             RectanglesListBox.FormattingEnabled = true;
             RectanglesListBox.ItemHeight = 20;
-            RectanglesListBox.Items.AddRange(new object[] { "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5" });
             RectanglesListBox.Location = new Point(6, 26);
             RectanglesListBox.Name = "RectanglesListBox";
             RectanglesListBox.Size = new Size(173, 264);
             RectanglesListBox.TabIndex = 1;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged_1;
             // 
-            // label3
+            // Rectangles
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(401, 26);
-            label3.Name = "label3";
-            label3.Size = new Size(27, 20);
-            label3.TabIndex = 2;
-            label3.Text = "ID:";
+            Rectangles.Controls.Add(RectanglesPanel);
+            Rectangles.Controls.Add(HeightRecTextBox);
+            Rectangles.Controls.Add(label11);
+            Rectangles.Controls.Add(WidthRecTextBox);
+            Rectangles.Controls.Add(label10);
+            Rectangles.Controls.Add(YRecTextBox);
+            Rectangles.Controls.Add(label9);
+            Rectangles.Controls.Add(XRecTextBox);
+            Rectangles.Controls.Add(label8);
+            Rectangles.Controls.Add(IDRecTextBox);
+            Rectangles.Controls.Add(label7);
+            Rectangles.Controls.Add(label6);
+            Rectangles.Controls.Add(DeleteRecButton);
+            Rectangles.Controls.Add(AddRecButton);
+            Rectangles.Controls.Add(RecListBox);
+            Rectangles.Controls.Add(label4);
+            Rectangles.Location = new Point(4, 29);
+            Rectangles.Name = "Rectangles";
+            Rectangles.Size = new Size(917, 581);
+            Rectangles.TabIndex = 3;
+            Rectangles.Text = "Rectangles";
+            Rectangles.UseVisualStyleBackColor = true;
             // 
-            // IdTextBox
+            // RectanglesPanel
             // 
-            IdTextBox.Enabled = false;
-            IdTextBox.Location = new Point(401, 49);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.Size = new Size(27, 27);
-            IdTextBox.TabIndex = 2;
+            RectanglesPanel.Location = new Point(382, 37);
+            RectanglesPanel.Name = "RectanglesPanel";
+            RectanglesPanel.Size = new Size(515, 452);
+            RectanglesPanel.TabIndex = 15;
+            // 
+            // HeightRecTextBox
+            // 
+            HeightRecTextBox.Location = new Point(83, 466);
+            HeightRecTextBox.Name = "HeightRecTextBox";
+            HeightRecTextBox.Size = new Size(125, 27);
+            HeightRecTextBox.TabIndex = 14;
+            HeightRecTextBox.TextChanged += HeightRecTextBox_TextChanged;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(20, 469);
+            label11.Name = "label11";
+            label11.Size = new Size(57, 20);
+            label11.TabIndex = 13;
+            label11.Text = "Height:";
+            // 
+            // WidthRecTextBox
+            // 
+            WidthRecTextBox.Location = new Point(83, 429);
+            WidthRecTextBox.Name = "WidthRecTextBox";
+            WidthRecTextBox.Size = new Size(125, 27);
+            WidthRecTextBox.TabIndex = 12;
+            WidthRecTextBox.TextChanged += WidthRecTextBox_TextChanged;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(25, 432);
+            label10.Name = "label10";
+            label10.Size = new Size(52, 20);
+            label10.TabIndex = 11;
+            label10.Text = "Width:";
+            // 
+            // YRecTextBox
+            // 
+            YRecTextBox.Enabled = false;
+            YRecTextBox.Location = new Point(83, 396);
+            YRecTextBox.Name = "YRecTextBox";
+            YRecTextBox.Size = new Size(125, 27);
+            YRecTextBox.TabIndex = 10;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(57, 396);
+            label9.Name = "label9";
+            label9.Size = new Size(20, 20);
+            label9.TabIndex = 9;
+            label9.Text = "Y:";
+            // 
+            // XRecTextBox
+            // 
+            XRecTextBox.Enabled = false;
+            XRecTextBox.Location = new Point(83, 363);
+            XRecTextBox.Name = "XRecTextBox";
+            XRecTextBox.Size = new Size(125, 27);
+            XRecTextBox.TabIndex = 8;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(56, 363);
+            label8.Name = "label8";
+            label8.Size = new Size(21, 20);
+            label8.TabIndex = 7;
+            label8.Text = "X:";
+            // 
+            // IDRecTextBox
+            // 
+            IDRecTextBox.Enabled = false;
+            IDRecTextBox.Location = new Point(83, 330);
+            IDRecTextBox.Name = "IDRecTextBox";
+            IDRecTextBox.Size = new Size(125, 27);
+            IDRecTextBox.TabIndex = 6;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(50, 333);
+            label7.Name = "label7";
+            label7.Size = new Size(27, 20);
+            label7.TabIndex = 5;
+            label7.Text = "ID:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(20, 307);
+            label6.Name = "label6";
+            label6.Size = new Size(135, 20);
+            label6.TabIndex = 4;
+            label6.Text = "Selected rectangle:";
+            // 
+            // DeleteRecButton
+            // 
+            DeleteRecButton.BackColor = Color.White;
+            DeleteRecButton.FlatAppearance.BorderSize = 0;
+            DeleteRecButton.FlatStyle = FlatStyle.Flat;
+            DeleteRecButton.Image = (Image)resources.GetObject("DeleteRecButton.Image");
+            DeleteRecButton.Location = new Point(195, 247);
+            DeleteRecButton.Name = "DeleteRecButton";
+            DeleteRecButton.Size = new Size(171, 57);
+            DeleteRecButton.TabIndex = 3;
+            DeleteRecButton.UseVisualStyleBackColor = false;
+            DeleteRecButton.Click += DeleteRecButton_Click;
+            // 
+            // AddRecButton
+            // 
+            AddRecButton.BackColor = Color.White;
+            AddRecButton.FlatAppearance.BorderSize = 0;
+            AddRecButton.FlatStyle = FlatStyle.Flat;
+            AddRecButton.ForeColor = SystemColors.Control;
+            AddRecButton.Image = (Image)resources.GetObject("AddRecButton.Image");
+            AddRecButton.Location = new Point(20, 247);
+            AddRecButton.Name = "AddRecButton";
+            AddRecButton.Size = new Size(135, 57);
+            AddRecButton.TabIndex = 2;
+            AddRecButton.UseVisualStyleBackColor = false;
+            AddRecButton.Click += AddRecButton_Click;
+            // 
+            // RecListBox
+            // 
+            RecListBox.FormattingEnabled = true;
+            RecListBox.ItemHeight = 20;
+            RecListBox.Location = new Point(20, 37);
+            RecListBox.Name = "RecListBox";
+            RecListBox.Size = new Size(346, 204);
+            RecListBox.TabIndex = 1;
+            RecListBox.SelectedIndexChanged += RecListBox_SelectedIndexChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(20, 14);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Rectangles:";
             // 
             // MainForm
             // 
@@ -586,6 +754,8 @@
             FilmGroupBox.PerformLayout();
             RectanglesGroupBox.ResumeLayout(false);
             RectanglesGroupBox.PerformLayout();
+            Rectangles.ResumeLayout(false);
+            Rectangles.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -612,8 +782,6 @@
         private TabPage Classes;
         private GroupBox RectanglesGroupBox;
         private Button FindButton;
-        private TextBox ColorTextBox;
-        private Label ColorLabel;
         private TextBox WidthTextBox;
         private Label WidthLabel;
         private TextBox LenghtTextBox;
@@ -639,5 +807,22 @@
         private TextBox yTextBox;
         private TextBox IdTextBox;
         private Label label3;
+        private TabPage Rectangles;
+        private Button DeleteRecButton;
+        private Button AddRecButton;
+        private ListBox RecListBox;
+        private Label label4;
+        private TextBox IDRecTextBox;
+        private Label label7;
+        private Label label6;
+        private Panel RectanglesPanel;
+        private TextBox HeightRecTextBox;
+        private Label label11;
+        private TextBox WidthRecTextBox;
+        private Label label10;
+        private TextBox YRecTextBox;
+        private Label label9;
+        private TextBox XRecTextBox;
+        private Label label8;
     }
 }

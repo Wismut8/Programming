@@ -9,7 +9,6 @@ public class Rectangle
     private Point2D _center;
     private double _height;
 	private double _width;
-	private string _color;
 
     public int Id
     {
@@ -62,10 +61,6 @@ public class Rectangle
         }
     }
 
-    ///<summary>
-    ///Возвращает и задает цвет прямоугольника
-    ///</summary>
-    public string Color { get; set; }
 
     ///<summary>
     ///Возвращает и задает координаты центра прямоугольника
@@ -78,11 +73,10 @@ public class Rectangle
     ///<param name = "name">Длина.</param>
     ///<param name = "name">Ширина.</param>
     ///<param name = "name">Цвет.</param>
-    public Rectangle(double height, double width, string color, Point2D center)
+    public Rectangle(double height, double width, Point2D center)
 	{
 		Height = height;
 		Width = width;
-		Color = color;
         Center = center;
         _allRectanglesCount++;
         _id = _allRectanglesCount;

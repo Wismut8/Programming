@@ -5,7 +5,7 @@ namespace Programming.View
     public partial class MainForm : Form
     {
         //добавление закрытого массива объектов типа Rectangle
-        private Rectangle[] _rectangles;
+        private List<Rectangle> _rectangles;
         private Rectangle _currentRectangle;
 
         //добавление закрытого массива объектов типа Film
@@ -17,28 +17,15 @@ namespace Programming.View
             InitializeComponent();
             Random random = new Random();
 
-            //инициализация прямоугольников 
-            _rectangles = new Rectangle[5];
-            string[] colors = { "red", "yellow", "green", "blue", "purple" };
-
-            for (int i = 0; i < _rectangles.Length; i++)
-            {
-                int width = random.Next(1, 100);
-                int height = random.Next(1, 100);
-                string color = colors[i];
-                int centerX = random.Next(1, 100);
-                int centerY = random.Next(1, 100);
-                _rectangles[i] = new Rectangle(width, height, color, new Point2D(centerX, centerY));
-            }
-
-            _currentRectangle = new Rectangle(0, 0, "", new Point2D(0, 0));
+            _rectangles = new List<Rectangle>();
+            _currentRectangle = new Rectangle(0, 0, new Point2D(0, 0));
 
             //инициализация фильмов 
             _films = new Film[5];
             string[] names = { "White Chicks", "Dune", "Drive", "First Blood", "The shining" };
             string[] genres = { "comedy", "drama", "thriller", "action", "horror" };
 
-            for (int i = 0; i < _rectangles.Length; i++)
+            for (int i = 0; i < _films.Length; i++)
             {
                 string name = names[i];
                 int yearOfIssue = random.Next(20, 240);
@@ -75,12 +62,12 @@ namespace Programming.View
             EnumsListBox.SelectedIndex = 0;
         }
 
-        private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
+        private int FindRectangleWithMaxWidth(List<Rectangle> rectangles)
         {
             int maxWidth = 0;
             int maxIndex = -1;
 
-            for (int i = 0; i < rectangles.Length; i++)
+            for (int i = 0; i < rectangles.Count; i++)
             {
                 if (rectangles[i].Width > maxWidth)
                 {
@@ -213,7 +200,6 @@ namespace Programming.View
             {
                 LenghtTextBox.Text = _currentRectangle.Height.ToString();
                 WidthTextBox.Text = _currentRectangle.Width.ToString();
-                ColorTextBox.Text = _currentRectangle.Color.ToString();
                 xTextBox.Text = _currentRectangle.Center.X.ToString();
                 yTextBox.Text = _currentRectangle.Center.Y.ToString();
                 IdTextBox.Text = _currentRectangle.Id.ToString();
@@ -235,6 +221,7 @@ namespace Programming.View
                     }
 
                     _currentRectangle.Height = height;
+                    UpdateRecList();
                     LenghtTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
                 }
             }
@@ -273,12 +260,6 @@ namespace Programming.View
             {
                 WidthTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
-        }
-
-        private void ColorTextBox_TextChanged(object sender, EventArgs e)
-        {
-            _currentRectangle.Color = ColorTextBox.Text;
-
         }
 
         private void FindButton_Click(object sender, EventArgs e)
@@ -401,6 +382,132 @@ namespace Programming.View
             FilmsListBox.SelectedIndex = FilmWithMaxRating;
         }
 
+        private void AddRecButton_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int width = random.Next(1, 100);
+            int height = random.Next(1, 100);
+            int centerX = random.Next(1, 100);
+            int centerY = random.Next(1, 100);
+            Rectangle newRectangle = new Rectangle(width, height, new Point2D(centerX, centerY));
+            _rectangles.Add(newRectangle);
+            UpdateRecList();
+            UpdateRectangleList();
+        }
+
+        private void UpdateRecList()
+        {
+            RecListBox.Items.Clear();
+            foreach (Rectangle rectangle in _rectangles)
+            {
+                RecListBox.Items.Add($"{rectangle.Id - 1}: (X= {rectangle.Center.X}, Y= {rectangle.Center.Y}, W= {rectangle.Width}, H= {rectangle.Height})");
+            }
+        }
+
+        private void UpdateRectangleList()
+        {
+            RectanglesListBox.Items.Clear();
+            foreach (Rectangle rectangle in _rectangles)
+            {
+                RectanglesListBox.Items.Add($"Rectangle {rectangle.Id - 1}");
+            }
+        }
+
+        private void DeleteRecButton_Click(object sender, EventArgs e)
+        {
+            if (RecListBox.SelectedIndex != -1)
+            {
+                _rectangles.RemoveAt(RecListBox.SelectedIndex);
+                RecListBox.Items.RemoveAt(RecListBox.SelectedIndex);
+                IDRecTextBox.Text = "";
+                XRecTextBox.Text = "";
+                YRecTextBox.Text = "";
+                HeightRecTextBox.Text = "";
+                WidthRecTextBox.Text = "";
+
+                //RectanglesListBox.Items.RemoveAt(RecListBox.SelectedIndex);
+                IdTextBox.Text = "";
+                xTextBox.Text = "";
+                yTextBox.Clear();
+                LenghtTextBox.Clear();
+                WidthTextBox.Clear();
+            }
+        }
+
+        private void RecListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = RecListBox.SelectedIndex;
+
+            if (RecListBox.SelectedIndex != -1)
+            {
+                _currentRectangle = _rectangles[RecListBox.SelectedIndex];
+
+                if (_currentRectangle != null)
+                {
+                    IDRecTextBox.Text = Convert.ToString(_currentRectangle.Id - 1);
+                    XRecTextBox.Text = _currentRectangle.Center.X.ToString();
+                    YRecTextBox.Text = _currentRectangle.Center.Y.ToString();
+                    HeightRecTextBox.Text = _currentRectangle.Height.ToString();
+                    WidthRecTextBox.Text = _currentRectangle.Width.ToString();
+                }
+            }
+        }
+
+        private void WidthRecTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_currentRectangle != null)
+                {
+                    int width = int.Parse(WidthRecTextBox.Text);
+
+                    if (width <= 0 || width > 100) // Пример допустимого диапазона значений
+                    {
+                        throw new ArgumentOutOfRangeException("Width must be between 1 and 100.");
+                    }
+
+                    _currentRectangle.Width = width;
+                    UpdateRectangleList();
+                    WidthRecTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                }
+            }
+            catch (FormatException)
+            {
+                WidthRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                WidthRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+            }
+        }
+
+        private void HeightRecTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_currentRectangle != null)
+                {
+                    int width = int.Parse(HeightRecTextBox.Text);
+
+                    if (width <= 0 || width > 100) // Пример допустимого диапазона значений
+                    {
+                        throw new ArgumentOutOfRangeException("Width must be between 1 and 100.");
+                    }
+
+                    _currentRectangle.Width = width;
+                    UpdateRectangleList();
+                    HeightRecTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                }
+            }
+            catch (FormatException)
+            {
+                HeightRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                HeightRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+            }
+        }
     }
 
 }
