@@ -5,18 +5,18 @@
 ///</summary>
 public class Point2D
 {
-    private readonly int _x;
-    private readonly int _y;
+    private int _x;
+    private int _y;
 
     ///<summary>
     ///Возвращает и задает координату Х
     ///</summary>
-    public int X { get; private set; }
+    public int X { get; set; }
 
     ///<summary>
     ///Возвращает и задает координату У
     ///</summary>
-    public int Y {  get; private set; }
+    public int Y {  get; set; }
 
     ///<summary>
     ///Создает экземпляр точки

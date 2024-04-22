@@ -7,8 +7,8 @@ public class Rectangle
     private static int _allRectanglesCount = 0;
     private readonly int _id;
     private Point2D _center;
-    private double _height;
-	private double _width;
+    private int _height;
+	private int _width;
 
     public int Id
     {
@@ -28,7 +28,7 @@ public class Rectangle
     ///<summary>
     ///Возвращает и задает длину прямоугольника
     ///</summary>
-    public double Height
+    public int Height
     {
         get
         {
@@ -46,7 +46,7 @@ public class Rectangle
     ///<summary>
     ///Возвращает и задает ширину прямоугольника
     ///</summary>
-    public double Width
+    public int Width
     {
         get
         {
@@ -65,7 +65,7 @@ public class Rectangle
     ///<summary>
     ///Возвращает и задает координаты центра прямоугольника
     ///</summary>
-    public Point2D Center { get; private set; }
+    public Point2D Center { get; set; }
 
     ///<summary>
     ///Создает экземпляр прямоугольника
@@ -73,7 +73,7 @@ public class Rectangle
     ///<param name = "name">Длина.</param>
     ///<param name = "name">Ширина.</param>
     ///<param name = "name">Цвет.</param>
-    public Rectangle(double height, double width, Point2D center)
+    public Rectangle(int height, int width, Point2D center)
 	{
 		Height = height;
 		Width = width;
