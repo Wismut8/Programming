@@ -118,6 +118,7 @@
             Controls.Add(EnumsTabControl);
             Name = "MainForm";
             Text = "MainForm";
+            Load += MainForm_Load;
             EnumsTabControl.ResumeLayout(false);
             Enums.ResumeLayout(false);
             Classes.ResumeLayout(false);

@@ -110,13 +110,13 @@ namespace Programming
                     MessageBox.Show("Бррр! Холодно!");
                     break;
                 case 1:
-                    EnumerationsGroupBox.BackColor = ColorTranslator.FromHtml("#559c45");
+                    MessageBox.Show("Скоро всё расцветет!");
                     break;
                 case 2:
                     MessageBox.Show("Ура! Солнце!");
                     break;
                 case 3:
-                    EnumerationsGroupBox.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    MessageBox.Show("Не забудь зонтик!");
                     break;
             }
         }

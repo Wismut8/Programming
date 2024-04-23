@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Programming.Model.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -63,9 +64,9 @@ namespace Programming
         private void AddRectanglePanel(Rectangle rectangle)
         {
             Panel panel = new Panel();
-            panel.Location = new Point(rectangle.Center.X, rectangle.Center.Y);
+            panel.Location = new Point(rectangle.Center.X - rectangle.Width / 2, rectangle.Center.Y - rectangle.Height / 2);
             panel.Size = new Size(rectangle.Width, rectangle.Height);
-            panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+            panel.BackColor = AppColors.CollisionFalse;
 
             _rectanglePanels.Add(panel);
             RectanglesPanel.Controls.Add(panel);
@@ -76,7 +77,7 @@ namespace Programming
         {
             foreach (var panel in _rectanglePanels)
             {
-                panel.BackColor = Color.FromArgb(127, 127, 255, 127);
+                panel.BackColor = AppColors.CollisionFalse;
             }
 
             for (int i = 0; i < _rectangles.Count; i++)
@@ -85,8 +86,8 @@ namespace Programming
                 {
                     if (!CollisionManager.IsCollision(_rectangles[i], _rectangles[j])) continue;
 
-                    _rectanglePanels[i].BackColor = Color.FromArgb(127, 255, 127, 127);
-                    _rectanglePanels[j].BackColor = Color.FromArgb(127, 255, 127, 127);
+                    _rectanglePanels[i].BackColor = AppColors.CollisionTrue;
+                    _rectanglePanels[j].BackColor = AppColors.CollisionTrue;
                 }
             }
         }
@@ -108,18 +109,19 @@ namespace Programming
                 RemoveRectanglePanel(selectedIndex);
                 FindCollisions();
 
-                YRecTextBox.BackColor = Color.White;
-                XRecTextBox.BackColor = Color.White;
-                HeightRecTextBox.BackColor = Color.White;
-                WidthRecTextBox.BackColor = Color.White;
+                YRecTextBox.BackColor = AppColors.ValidationTrueColor;
+                XRecTextBox.BackColor = AppColors.ValidationTrueColor;
+                HeightRecTextBox.BackColor = AppColors.ValidationTrueColor;
+                WidthRecTextBox.BackColor = AppColors.ValidationTrueColor;
             }
         }
         private void UpdateRectanglePanelLocation(int index, int newX, int newY)
         {
             if (index >= 0 && index < _rectanglePanels.Count)
             {
+                Rectangle rectangle = _rectangles[index + 8];
                 Panel panel = _rectanglePanels[index];
-                panel.Location = new Point(newX, newY);
+                panel.Location = new Point(newX - (rectangle.Width / 2), newY - (rectangle.Height / 2));
                 FindCollisions(); // Если нужно проверить коллизии после изменения размеров
             }
         }
@@ -160,16 +162,16 @@ namespace Programming
                     UpdateRecList();
                     UpdateRectanglePanelLocation(_currentRectangle.Id - 8, newX, newY);
 
-                    XRecTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    XRecTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                XRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                XRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                XRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                XRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -191,16 +193,16 @@ namespace Programming
                     UpdateRecList();
                     UpdateRectanglePanelLocation(_currentRectangle.Id - 8, newX, newY);
 
-                    YRecTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    YRecTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                YRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                YRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                YRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                YRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -220,16 +222,16 @@ namespace Programming
                     _currentRectangle.Width = width;
                     UpdateRecList();
                     UpdateRectanglePanelSize(_currentRectangle.Id - 8, width, _currentRectangle.Height); // Меняем только ширину, высота остается прежней
-                    WidthRecTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    WidthRecTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                WidthRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                WidthRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                WidthRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                WidthRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -250,16 +252,16 @@ namespace Programming
                     _currentRectangle.Height = height;
                     UpdateRecList();
                     UpdateRectanglePanelSize(_currentRectangle.Id - 8, width, height);
-                    HeightRecTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    HeightRecTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                HeightRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                HeightRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                HeightRecTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                HeightRecTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -279,10 +281,10 @@ namespace Programming
                     HeightRecTextBox.Text = _currentRectangle.Height.ToString();
                     WidthRecTextBox.Text = _currentRectangle.Width.ToString();
 
-                    YRecTextBox.BackColor = Color.White;
-                    XRecTextBox.BackColor = Color.White;
-                    HeightRecTextBox.BackColor = Color.White;
-                    WidthRecTextBox.BackColor = Color.White;
+                    YRecTextBox.BackColor = AppColors.ValidationTrueColor;
+                    XRecTextBox.BackColor = AppColors.ValidationTrueColor;
+                    HeightRecTextBox.BackColor = AppColors.ValidationTrueColor;
+                    WidthRecTextBox.BackColor = AppColors.ValidationTrueColor;
 
                 }
             }

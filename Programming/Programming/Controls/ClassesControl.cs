@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Programming.Model.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -69,7 +70,7 @@ namespace Programming.Controls
                 xTextBox.Text = _currentRectangle.Center.X.ToString();
                 yTextBox.Text = _currentRectangle.Center.Y.ToString();
                 IdTextBox.Text = _currentRectangle.Id.ToString();
-                LenghtTextBox.BackColor = Color.White;
+                LenghtTextBox.BackColor = AppColors.ValidationTrueColor;
             }
         }
 
@@ -94,16 +95,16 @@ namespace Programming.Controls
                     }
 
                     _currentRectangle.Height = height;
-                    LenghtTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    LenghtTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                LenghtTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                LenghtTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                LenghtTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                LenghtTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -122,16 +123,16 @@ namespace Programming.Controls
                     }
 
                     _currentRectangle.Width = width;
-                    WidthTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    WidthTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                WidthTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                WidthTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                WidthTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                WidthTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -170,16 +171,16 @@ namespace Programming.Controls
                     }
 
                     _currentFilm.DurationInMinutes = duration;
-                    DurationTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    DurationTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                DurationTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                DurationTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                DurationTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                DurationTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -197,16 +198,16 @@ namespace Programming.Controls
                     }
 
                     _currentFilm.YearOfIssue = yearOfIssue;
-                    IssueTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    IssueTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                IssueTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                IssueTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                IssueTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                IssueTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
@@ -229,16 +230,16 @@ namespace Programming.Controls
                     }
 
                     _currentFilm.Rating = rating;
-                    RatingTextBox.BackColor = Color.White; // Установка обычного белого цвета фона
+                    RatingTextBox.BackColor = AppColors.ValidationTrueColor; // Установка обычного белого цвета фона
                 }
             }
             catch (FormatException)
             {
-                RatingTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при ошибке формата числа
+                RatingTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при ошибке формата числа
             }
             catch (ArgumentOutOfRangeException)
             {
-                RatingTextBox.BackColor = Color.LightPink; // Подсветка красным цветом при выходе значения за допустимый диапазон
+                RatingTextBox.BackColor = AppColors.ValidationFalseColor; // Подсветка красным цветом при выходе значения за допустимый диапазон
             }
         }
 
