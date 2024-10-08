@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaoratoryWork8", "LaoratoryWork8\LaoratoryWork8.csproj", "{82DD8623-1AB9-488D-B622-865BE94F3560}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FlightControlInstaller", "FlightControlInstaller\FlightControlInstaller.vdproj", "{6B8583A3-6BEC-4C70-B07A-54B406A8B234}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82DD8623-1AB9-488D-B622-865BE94F3560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DD8623-1AB9-488D-B622-865BE94F3560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DD8623-1AB9-488D-B622-865BE94F3560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DD8623-1AB9-488D-B622-865BE94F3560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8583A3-6BEC-4C70-B07A-54B406A8B234}.Debug|Any CPU.ActiveCfg = Debug
+		{6B8583A3-6BEC-4C70-B07A-54B406A8B234}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA5D4F77-E5C5-4E48-92FE-2DC82021C7A9}
+	EndGlobalSection
+EndGlobal
